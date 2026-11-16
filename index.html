@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Efe Alço | Yazılım Mühendisi</title>
+  <meta name="description" content="Efe Alço - Yazılım Mühendisi. Kişisel tanıtım sayfası." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --surface: #ffffff;
+      --text: #1a1a1a;
+      --muted: #5f6368;
+      --accent: #4f46e5;
+      --accent-soft: #eef2ff;
+      --border: #e6e6e3;
+      --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1115;
+        --surface: #171a21;
+        --text: #f1f1f1;
+        --muted: #a0a4ab;
+        --accent: #818cf8;
+        --accent-soft: #1e2140;
+        --border: #262a33;
+        --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    /* Navigasyon */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .container {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 60px;
+    }
+    .logo { font-weight: 800; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    nav ul { display: flex; gap: 24px; list-style: none; }
+    nav a.link { color: var(--muted); text-decoration: none; font-size: .95rem; font-weight: 500; transition: color .2s; }
+    nav a.link:hover { color: var(--text); }
+
+    /* Karşılama */
+    .hero {
+      min-height: calc(100vh - 60px);
+      display: flex; align-items: center;
+      padding: 80px 0;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft); color: var(--accent);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: .85rem; font-weight: 600; margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.04em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .name { color: var(--accent); }
+    .hero p {
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      color: var(--muted); max-width: 560px; margin-bottom: 36px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--accent); color: #fff;
+      padding: 14px 28px; border-radius: 12px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn svg { width: 20px; height: 20px; }
+
+    /* Bölümler */
+    section.block { padding: 90px 0; border-top: 1px solid var(--border); }
+    .section-label {
+      color: var(--accent); font-size: .85rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800; letter-spacing: -0.03em; margin-bottom: 24px;
+    }
+    .about p { font-size: 1.1rem; color: var(--muted); max-width: 680px; margin-bottom: 16px; }
+
+    /* Hobi kartları */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: transform .25s, border-color .25s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .card .icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: var(--accent-soft);
+      display: grid; place-items: center;
+      font-size: 1.8rem; margin-bottom: 20px;
+    }
+    .card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); }
+
+    /* İletişim */
+    .contact { text-align: center; }
+    .contact p { color: var(--muted); font-size: 1.1rem; max-width: 520px; margin: 0 auto 32px; }
+
+    footer {
+      text-align: center; padding: 32px 0;
+      color: var(--muted); font-size: .9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Telefon */
+    @media (max-width: 600px) {
+      nav ul { gap: 16px; }
+      nav a.link { font-size: .85rem; }
+      .hero { padding: 60px 0; min-height: auto; }
+      section.block { padding: 64px 0; }
+      .card { padding: 24px; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="#" class="logo">Efe<span>.</span></a>
+      <ul>
+        <li><a class="link" href="#hakkimda">Hakkımda</a></li>
+        <li><a class="link" href="#hobiler">Hobiler</a></li>
+        <li><a class="link" href="#iletisim">İletişim</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <span class="badge">👋 Merhaba, hoş geldin!</span>
+      <h1>Ben <span class="name">Efe Alço</span>,<br />Yazılım Mühendisiyim.</h1>
+      <p>Temiz, anlaşılır ve kullanışlı yazılımlar geliştiriyorum. Boş zamanlarımda gitar çalıyor ve resim çiziyorum.</p>
+      <a href="#iletisim" class="btn">Benimle İletişime Geç</a>
+    </div>
+  </header>
+
+  <section id="hakkimda" class="block about">
+    <div class="container">
+      <div class="section-label">Hakkımda</div>
+      <h2>Kodla problem çözmeyi seviyorum</h2>
+      <p>Merhaba, ben Efe. Yazılım mühendisi olarak fikirleri çalışan, güvenilir ve kullanıcı dostu ürünlere dönüştürmekten keyif alıyorum.</p>
+      <p>Yeni teknolojiler öğrenmeyi, ekip içinde üretmeyi ve yaptığım her işte sadeliği ön planda tutmayı önemsiyorum.</p>
+    </div>
+  </section>
+
+  <section id="hobiler" class="block">
+    <div class="container">
+      <div class="section-label">Hobilerim</div>
+      <h2>Ekran dışında neler yapıyorum?</h2>
+      <div class="cards">
+        <article class="card">
+          <div class="icon">🎸</div>
+          <h3>Gitar Çalmak</h3>
+          <p>Gün sonunda gitarımı elime alıp yeni şarkılar ve akorlar öğrenmek en sevdiğim rahatlama yöntemi.</p>
+        </article>
+        <article class="card">
+          <div class="icon">🎨</div>
+          <h3>Resim Çizmek</h3>
+          <p>Kalem ve boyalarla hayal gücümü kâğıda dökmek, yaratıcılığımı canlı tutmamı sağlıyor.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="iletisim" class="block contact">
+    <div class="container">
+      <div class="section-label">İletişim</div>
+      <h2>Birlikte çalışalım</h2>
+      <p>Bir projen, sorun ya da sadece merhaba demek istiyorsan bana e-posta gönderebilirsin.</p>
+      <!-- E-posta adresini aşağıdaki mailto: kısmında güncelle -->
+      <a href="mailto:ornek@eposta.com" class="btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        E-posta Gönder
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="yil"></span> Efe Alço. Tüm hakları saklıdır.</div>
+  </footer>
+
+  <script>
+    document.getElementById("yil").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
